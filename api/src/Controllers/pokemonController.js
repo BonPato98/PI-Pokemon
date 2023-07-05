@@ -17,7 +17,7 @@ const getPokemonById = async (id) => {
 const createPokemonDb = async (name, image, hp, attack, defense, speed, height, weight) => {
     const nameLowerCase = name.toLowerCase()
     const newPokemon = await Pokemon.create({
-        nameLowerCase,
+        name: nameLowerCase,
         image,
         hp,
         attack,

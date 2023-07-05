@@ -5,11 +5,12 @@ module.exports = (sequelize) => {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        DefaultValue: UUIDV4,
+        defaultValue: UUIDV4,
     },
     name: {
         type: DataTypes.STRING,
         unique: true,
+        validate: {notEmpty:{ msg: "El nombre no puede estar vacío"}}
     }
   }, {
     timestamps: false,
