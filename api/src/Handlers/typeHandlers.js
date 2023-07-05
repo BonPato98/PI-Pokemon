@@ -1,16 +1,16 @@
 const axios = require('axios')
-const {checkTypesDb, saveTypesDb, getTypesDb} = require('../Controllers/typeController')
+const {saveTypesDb, getTypesDb} = require('../Controllers/typeController')
 
 const getTypes = async (req, res) => {
-    const types = await checkTypesDb()
+    const types = await getTypesDb()
     if (types.length > 0) {
-        return types
+        return res.status(200).send(types)
     }
     try {
         const response = await axios.get('https://pokeapi.co/api/v2/type')
         const typesApi = await Promise.all(response.data.results.map(t => t.name))
-        saveTypesDb(typesApi)
-        res.status(200).send(typesApi)
+        await saveTypesDb(typesApi)
+        res.status(200).send('Tipos guardados en la base de datos')
     } catch (error) {
         res.status(400).send('msg:', error.msg)
     }

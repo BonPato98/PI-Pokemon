@@ -9,8 +9,6 @@ module.exports = (sequelize) => {
     },
     name: {
         type: DataTypes.STRING,
-        unique: true,
-        validate: {notEmpty:{ msg: "El nombre no puede estar vacío"}}
     }
   }, {
     timestamps: false,

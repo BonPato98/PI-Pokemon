@@ -102,7 +102,7 @@ const postPokemonHandler = async (req, res) => {
     const {name, image, hp, attack, defense, speed, height, weight, types} = req.body
     const nameLowerCase = name.toLowerCase()
     try {
-        const response = await createPokemonDb(nameLowerCase, image, hp, attack, defense, speed, height, weight)
+        const response = await createPokemonDb(nameLowerCase, image, hp, attack, defense, speed, height, weight, types)
         res.status(201).json(response)
     } catch (error) {
         res.status(400).send({error: error.message})

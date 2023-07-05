@@ -1,24 +1,20 @@
 const {Type} = require('../db')
 
-const checkTypesDb = async () => {
+const getTypesDb = async () => {
     const types = await Type.findAll()
     return types
 }
 
 const saveTypesDb = async (types) => {
-    types.forEach(t => {
+    (types.forEach(t => {
         Type.create({
             name:t
         })
-    })
+    }))
 }
 
-const getTypesDb = async () => {
-
-}
 
 module.exports = {
-    checkTypesDb,
     saveTypesDb,
     getTypesDb,
 }
