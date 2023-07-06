@@ -1,16 +1,35 @@
-const {Pokemon} = require('../db')
+const {Pokemon, Type } = require('../db')
 
 const getPokemonDb = async (name) => {
     if (name) {
-       const pokemonName = await Pokemon.findOne({where: {name}})
+       const pokemonName = await Pokemon.findOne({
+        where: {name},
+        include: {
+            model: Type,
+            attribute: "name",
+            through: { attributes: [] }
+        }
+    })
        return pokemonName
     }
-    const allPokemon = await Pokemon.findAll()
+    const allPokemon = await Pokemon.findAll({
+        include: {
+            model: Type,
+            attribute: "name",
+            through: { attributes: [] }
+        }
+    })
     return allPokemon
 }
 
 const getPokemonById = async (id) => {
-    const pokemonId = await Pokemon.findOne({where: {id}})
+    const pokemonId = await Pokemon.findOne({
+        where: {id},
+        include: {
+            model: Type,
+            attribute: "name",
+            through: { attributes: [] }
+        }})
     return pokemonId
 }
 
@@ -24,8 +43,9 @@ const createPokemonDb = async (name, image, hp, attack, defense, speed, height, 
         defense,
         speed,
         height,
-        weight
+        weight,
     })
+    newPokemon.addTypes(types)
     return newPokemon
 }
 
