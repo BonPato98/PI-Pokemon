@@ -11,19 +11,19 @@ const Form = () => {
     speed:"", // opcional
     height:"", // opcional
     weight:"", // opcional
-    types:"",
+    types:[],
   })
 
   const [errors, setErrors] = useState({
     name:"Campo obligatorio (25 caracteres máximo)",
-    image:"Campo obligatorio (debe ser una URL)",
+    image:"Campo obligatorio (Debe ser una URL)",
     hp:"Campo obligatorio (Debe ser un número entero)",
     attack:"Campo obligatorio (Debe ser un número entero)",
     defense:"Campo obligatorio (Debe ser un número entero)",
     speed:"", // debe ser numero entero
     height:"", // debe ser numero entero
     weight:"", // debe ser numero entero
-    types:"El pokemon debe tener al menos un tipo"
+    types:"Campo obligatorio (El pokemon debe tener al menos un tipo)"
   })
 
   const validate = (input, name) => {
@@ -36,27 +36,63 @@ const Form = () => {
 
     }
     if(name === "image"){
-      if(input.image!=="") setErrors({...errors, image:""})
-      else setErrors({...errors, image:"Este campo no puede estar vacío"})
+      let regex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png)/
+      if(regex.test(input.image)) setErrors({...errors, image:""})
+      else setErrors({...errors, image:"La imagen debe ser una URL con extensión jpg o png"})
+
+      if(input.image=="") setErrors({...errors, image:"Campo obligatorio (Debe ser una URL con extensión jpg o png)"})
     }
     if(name === "hp"){
+      let regex = (/^[0-9]+$/)
+      if(regex.test(input.hp)) setErrors({...errors, hp:""})
+      else setErrors({...errors, hp:"El valor debe ser un número entero"})
 
+     if(input.hp > 255) setErrors({...errors, hp:"El valor de una caracteristica no puede ser mayor a 255"})
+
+     if(input.hp=="") setErrors({...errors, hp:"Campo obligatorio (Debe ser un número entero)"})
     }
     if(name === "attack"){
+      let regex = (/^[0-9]+$/)
+      if(regex.test(input.attack)) setErrors({...errors, attack:""})
+      else setErrors({...errors, attack:"El valor debe ser un número entero"})
 
+     if(input.attack > 255) setErrors({...errors, attack:"El valor de una caracteristica no puede ser mayor a 255"})
+
+     if(input.attack=="") setErrors({...errors, attack:"Campo obligatorio (Debe ser un número entero)"})
     }
     if(name === "defense"){
+      let regex = (/^[0-9]+$/)
+      if(regex.test(input.defense)) setErrors({...errors, defense:""})
+      else setErrors({...errors, defense:"El valor debe ser un número entero"})
 
+     if(input.defense > 255) setErrors({...errors, defense:"El valor de una caracteristica no puede ser mayor a 255"})
+
+     if(input.defense=="") setErrors({...errors, defense:"Campo obligatorio (Debe ser un número entero)"})
     }
     if(name === "speed"){
-      if(parseInt(input.speed)==NaN) setErrors({...errors, speed:"El valor debe ser un número entero"})
+      let regex = (/^[0-9]+$/)
+      if(regex.test(input.speed)) setErrors({...errors, speed:""})
+      else setErrors({...errors, speed:"El valor debe ser un número entero"})
+
+     if(input.speed > 255) setErrors({...errors, speed:"El valor de una caracteristica no puede ser mayor a 255"})
+
+     if(input.speed=="") setErrors({...errors, speed:""})
     }
     if(name === "height"){
-      if(parseInt(input.height)==NaN) setErrors({...errors, height:"El valor debe ser un número entero"})
+      let regex = (/^[0-9]+$/)
+      if(regex.test(input.height)) setErrors({...errors, height:""})
+      else setErrors({...errors, height:"El valor debe ser un número entero"})
+
+      if(input.height > 255) setErrors({...errors, height:"El valor de una caracteristica no puede ser mayor a 255"})
+
+      if(input.height=="") setErrors({...errors, height:""})
     }
     if(name === "weight"){
-      if(isNaN(parseInt(input.weight))) setErrors({...errors, weight:"El valor debe ser un número entero"})
-      else setErrors({...errors, weight:""})
+      let regex = (/^[0-9]+$/)
+      if(regex.test(input.weight)) setErrors({...errors, weight:""})
+      else setErrors({...errors, weight:"El valor debe ser un número entero"})
+
+      if(input.weight > 255) setErrors({...errors, weight:"El valor de una caracteristica no puede ser mayor a 255"})
 
       if(input.weight=="") setErrors({...errors, weight:""})
     }
