@@ -38,7 +38,7 @@ const getPokemonsHandler = async (req, res) => {
 
 
             //----------------------------------------------------------GET ALL------------------------------------//
-            const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=60')
+            const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151')
             const pokemonsApi = await Promise.all (response.data.results.map(async p => {
                 const info = await axios.get(p.url)
                 const {id, name, sprites, height, weight, stats, types} = info.data
