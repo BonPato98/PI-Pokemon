@@ -1,4 +1,10 @@
 .cards-cont{
-    display: flex wrap;
-    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-cards-cont{
+    display: flex;
+    flex-flow: column wrap;
 }

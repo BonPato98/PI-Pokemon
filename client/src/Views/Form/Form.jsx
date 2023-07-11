@@ -1,7 +1,12 @@
 import React, {useState} from 'react'
+import {useDispatch} from 'react-redux'
+import { postPokemon } from '../../Redux/Actions'
 import './form.css'
 
 const Form = () => {
+
+  const dispatch = useDispatch()
+
   const [input, setInput] = useState({
     name:"",
     image:"",
@@ -129,10 +134,6 @@ const Form = () => {
     }, e.target.name)
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
-
   const handleSelect = (e) => {
     const options = e.target.options
     const addedTypes = []
@@ -151,6 +152,11 @@ const Form = () => {
       ...input,
       types: addedTypes
     }, "types")
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(postPokemon(input))
   }
 
   return (

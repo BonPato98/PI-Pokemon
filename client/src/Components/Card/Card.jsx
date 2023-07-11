@@ -5,11 +5,11 @@ const Card = (props) => {
   return (
     <div className='card-cont'>
       <div className='img-cont'>
-        <img src={props.image} alt="imagen del pokemon" />
+        <img src={props.image} alt="imagen del pokemon" id='pokepic'/>
       </div>
       <div className='info-cont'>
-        Nombre:{props.name}
-        Tipos:{props.types}
+        <h4>{props.name}</h4>
+        <p>Tipos:{props.types}</p>
       </div>
     </div>
   )
