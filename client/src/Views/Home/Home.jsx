@@ -4,12 +4,12 @@ import Cards from '../../Components/Cards/Cards'
 import {useDispatch, useSelector} from "react-redux"
 import { getPokemons, paginatePokemon } from '../../Redux/Actions'
 import Filters from '../../Components/Filters/Filters'
+import Searchbar from '../../Components/Searchbar/Searchbar'
 
 const Home = () => {
   
   const dispatch = useDispatch();
   const paginated = useSelector((state) => state.paginated)
-  const filtered = useSelector((state) => state.filtered)
 
   const nextPage = () => {
     dispatch(paginatePokemon("next"))
@@ -25,6 +25,9 @@ const Home = () => {
 
   return (
     <div className='main-home-cont'>
+      <div>
+        <Searchbar/>
+      </div>
       <div className='filters-cont'>
         <Filters/>
       </div>
@@ -32,7 +35,7 @@ const Home = () => {
         <button onClick={prevPage}>Prev</button><button onClick={nextPage}>Next</button>
       </div>
       <div>
-        {filtered ? <Cards pokemon={paginated}></Cards> : <Cards pokemon={paginated}></Cards>}
+        <Cards pokemon={paginated}></Cards>
       </div>
     </div>
     

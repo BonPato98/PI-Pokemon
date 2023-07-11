@@ -2,6 +2,7 @@ import React from 'react'
 import './card.css'
 
 const Card = (props) => {
+
   return (
     <div className='card-cont'>
       <div className='img-cont'>
@@ -9,7 +10,7 @@ const Card = (props) => {
       </div>
       <div className='info-cont'>
         <h4>{props.name}</h4>
-        <p>Tipos:{props.types}</p>
+        <p>Tipos: {props.types.join(", ")}</p>
       </div>
     </div>
   )

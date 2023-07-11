@@ -6,6 +6,7 @@ export const FILTERBYTYPE = "FILTERBYTYPE"
 export const FILTERBYSOURCE = "FILTERBYSOURCE"
 export const RESET = "RESET"
 export const ORDER = "ORDER"
+export const SEARCH = "SEARCH"
 
 export function getPokemons() {
     return async function (dispatch) {
@@ -73,5 +74,24 @@ export function resetPokemon(){
         dispatch({
             type:RESET,
         })
+    }
+}
+
+export function getPokemonByName(name) {
+    return async function (dispatch){
+        try {
+            const response = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+            console.log(response.data);
+            return dispatch({
+                type: SEARCH,
+                payload: response.data
+            })
+        } catch (error) {
+            alert(error.response.data)
+            return dispatch({
+                type: SEARCH,
+                payload: error.response.data
+            })
+        }
     }
 }

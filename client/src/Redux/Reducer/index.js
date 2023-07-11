@@ -1,4 +1,4 @@
-import {GET_POKEMONS, PAGINATE, FILTERBYSOURCE, FILTERBYTYPE, ORDER, RESET} from '../Actions/index.js'
+import {GET_POKEMONS, PAGINATE, FILTERBYSOURCE, FILTERBYTYPE, ORDER, RESET, SEARCH} from '../Actions/index.js'
 
 let initialState = {
     ogPokemons: [],
@@ -8,6 +8,7 @@ let initialState = {
     currentPage: 0,
     filters: false,
     ordered: false,
+    search: false,
 }
 
 function rootReducer(state = initialState, action) {
@@ -20,6 +21,18 @@ function rootReducer(state = initialState, action) {
                 unfiltered: [...action.payload],
                 paginated: [...action.payload].splice(0, 12)
             }
+        case SEARCH:
+                if (action.payload === "Pokemon no existe") {
+                    return {...state,
+                        modifiedPokemons: [...state.ogPokemons],
+                        paginated: [...state.ogPokemons].splice(0, 12),
+                    }
+                } else {
+                    return {...state,
+                        paginated: [action.payload],
+                        search: true
+                    }
+                }
         case PAGINATE:
             const nextPage = state.currentPage + 1;
             const prevPage = state.currentPage - 1;
@@ -35,7 +48,6 @@ function rootReducer(state = initialState, action) {
             }
         case FILTERBYTYPE:
             const unfiltered = [...state.unfiltered]
-            console.log(unfiltered);
             if (action.payload === "off") {
                 return {
                     ...state,
@@ -54,13 +66,14 @@ function rootReducer(state = initialState, action) {
             }
         case ORDER:
         case RESET:
-            if (state.filters || state.ordered){
+            if (state.filters || state.ordered || state.search){
                 return {
                     ...state,
                     modifiedPokemons: [...state.ogPokemons],
                     paginated: [...state.ogPokemons].splice(0, 12),
                     filters: false,
                     ordered: false,
+                    search: false
                 }
             }
             return {...state}
