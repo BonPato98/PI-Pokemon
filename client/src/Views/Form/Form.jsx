@@ -97,8 +97,25 @@ const Form = () => {
       if(input.weight=="") setErrors({...errors, weight:""})
     }
     if(name === "types"){
+      console.log(input.types.length);
 
+      if (input.types.length === 0) setErrors({...errors, types:"El pokemon debe tener al menos un tipo"})
+
+      if (input.types.length > 2) setErrors({...errors, types:"El pokemon puede tener un máximo de 2 tipos"})
+      else setErrors({...errors, types:""})
     }
+}
+
+  const disable = () => {
+    let disabled = true;
+    for(let error in errors){
+      if(errors[error]==="") disabled = false;
+      else {
+        disabled=true;
+        break;
+      }
+    }
+    return disabled;
   }
 
   const handleChange = (e) => {
@@ -110,11 +127,35 @@ const Form = () => {
       ...input,
       [e.target.name]: e.target.value
     }, e.target.name)
-
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
+  const handleSelect = (e) => {
+    const options = e.target.options
+    const addedTypes = []
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        addedTypes.push(options[i].value)
+      } else {
+        addedTypes.filter(type => !type)
+      }
+    }
+    setInput({
+      ...input,
+      types: addedTypes
+    })
+    validate({
+      ...input,
+      types: addedTypes
+    }, "types")
+  }
+
   return (
     <div className='form-cont'>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className='form-input-cont'>
           <label>Nombre:</label>
           <input name="name" onChange={handleChange} type="text" />
@@ -165,12 +206,33 @@ const Form = () => {
 
         <div className='form-input-cont'>
           <label>Tipos:</label>
-          <input name="types" onChange={handleChange} type="text" />
+          <select multiple={true} name="types" onChange={handleSelect}>
+            <option value="normal">Normal</option>
+            <option value="fighting">Fighting</option>
+            <option value="flying">Flying</option>
+            <option value="poison">Poison</option>
+            <option value="ground">Ground</option>
+            <option value="rock">Rock</option>
+            <option value="bug">Bug</option>
+            <option value="ghost">Ghost</option>
+            <option value="steel">Steel</option>
+            <option value="fire">Fire</option>
+            <option value="water">Water</option>
+            <option value="grass">Grass</option>
+            <option value="electric">Electric</option>
+            <option value="psychic">Psychic</option>
+            <option value="ice">Ice</option>
+            <option value="dragon">Dragon</option>
+            <option value="dark">Dark</option>
+            <option value="fairy">Fairy</option>
+            <option value="unknown">Unknown</option>
+            <option value="shadow">Shadow</option>
+          </select>
           <span>{errors.types}</span>
         </div>
 
         <div className='form-button'>
-          <input type="submit"/>
+          <input disabled={disable()} type="submit"/>
           </div>
       </form>
     </div>

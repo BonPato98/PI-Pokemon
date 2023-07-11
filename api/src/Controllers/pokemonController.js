@@ -15,11 +15,20 @@ const getPokemonDb = async (name) => {
     const allPokemon = await Pokemon.findAll({
         include: {
             model: Type,
-            attribute: "name",
             through: { attributes: [] }
         }
     })
-    return allPokemon
+
+    const modified = await Promise.all(allPokemon.map( async p => {
+        const types = []
+        await p.types.forEach(type => {
+            types.push(type.dataValues.name)
+        })
+        const newTypes = {...p.dataValues, types:types}
+        return newTypes
+    }))
+    
+    return modified
 }
 
 const getPokemonById = async (id) => {
@@ -45,7 +54,14 @@ const createPokemonDb = async (name, image, hp, attack, defense, speed, height, 
         height,
         weight,
     })
-    newPokemon.addTypes(types)
+    const typesId = await Promise.all(types.map(async name => {
+        const foundType = await (Type.findOne({
+            where: {name}
+        }))
+        const typeId = foundType.dataValues.id
+        return typeId;
+    }))
+    newPokemon.addTypes(typesId)
     return newPokemon
 }
 

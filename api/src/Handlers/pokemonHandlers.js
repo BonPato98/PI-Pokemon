@@ -39,7 +39,7 @@ const getPokemonsHandler = async (req, res) => {
 
             //----------------------------------------------------------GET ALL------------------------------------//
             const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=60')
-            const pokemons = await Promise.all (response.data.results.map(async p => {
+            const pokemonsApi = await Promise.all (response.data.results.map(async p => {
                 const info = await axios.get(p.url)
                 const {id, name, sprites, height, weight, stats, types} = info.data
                 return {
@@ -56,10 +56,8 @@ const getPokemonsHandler = async (req, res) => {
                 }
             }))
             const pokemonDb = await getPokemonDb()
-            if (pokemonDb.length > 0) {
-                pokemons.push(pokemonDb)
-            }
-            res.status(200).send(pokemons)
+            const allPokemons = [...pokemonsApi, ...pokemonDb]
+            res.status(200).send(allPokemons)
         } catch (error) {
             res.status(400).send('error')
         }

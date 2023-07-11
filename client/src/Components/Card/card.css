@@ -1,0 +1,6 @@
+.card-cont{
+    display: flex;
+    flex-flow: column wrap;
+    border: solid black 2px;
+
+}
