@@ -58,7 +58,7 @@ function rootReducer(state = initialState, action) {
                 return {
                     ...state,
                     modifiedPokemons: [...state.ogPokemons],
-                    paginated: [...state.ogPokemons],
+                    paginated: [...state.ogPokemons].splice(0, 12),
                     filters: false,
                     ordered: false,
                 }
