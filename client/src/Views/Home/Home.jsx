@@ -25,17 +25,19 @@ const Home = () => {
 
   return (
     <div className='main-home-cont'>
-      <div>
-        <Searchbar/>
-      </div>
-      <div className='filters-cont'>
-        <Filters/>
-      </div>
-      <div className='page-buttons-cont'>
-        <button onClick={prevPage}>Prev</button><button onClick={nextPage}>Next</button>
+      <div className='functions-cont'>
+        <div className='searchbar-cont'>
+          <Searchbar/>
+        </div>
+        <div className='filters-cont'>
+          <Filters/>
+        </div>
       </div>
       <div>
         <Cards pokemon={paginated}></Cards>
+        <div className='page-buttons-cont'>
+        <button className="page-button" onClick={prevPage}>Prev</button><button className="page-button" onClick={nextPage}>Next</button>
+      </div>
       </div>
     </div>
     

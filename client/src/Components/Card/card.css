@@ -1,11 +1,11 @@
 .card-cont{
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
-    border: solid black 2px;
-    background-color: gray;
+    border: 3px solid black;
+    background-color: #C12026;
     border-radius: 10px;
     height: 15rem;
     width: 15rem;
@@ -18,13 +18,20 @@
     justify-content: center;
     max-width: 96px;
     max-height: 96px;
-    border: solid white 1px;
+    background-color: #8DB9DC;
+    border: solid white 5px;
+    border-radius: 10px;
 }
 
 .info-cont{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    background-color: #53B161;
+    width: 10rem;
+    height: 7rem;
+    color: white;
 }
 
 #pokepic{

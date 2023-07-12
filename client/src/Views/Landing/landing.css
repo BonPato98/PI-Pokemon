@@ -1,0 +1,16 @@
+.landing-cont{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../images/pokeball-pokemon-minimal.jpg");
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.content-cont{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}

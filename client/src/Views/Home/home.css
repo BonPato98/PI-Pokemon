@@ -2,5 +2,34 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.functions-cont{
+    display: flex;
     justify-content: center;
+}
+
+.page-buttons-cont{
+    display: flex;
+    justify-content: center;
+}
+
+.page-button {
+        color: white;
+        width: 6rem;
+        height: 3rem;
+        border: 3px solid black;
+        border-radius: 45px;
+        transition: all 0.3s;
+        cursor: pointer;
+        background: #C12026;
+        font-size: 1.2rem;
+        font-weight: 550;
+        margin: 1rem;
+}
+
+.page-button:hover {
+    background: white;
+    color: #C12026;
 }

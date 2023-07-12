@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { filterPokemonByType, resetPokemon } from '../../Redux/Actions'
 import { useDispatch, useSelector } from 'react-redux'
+import './filters.css'
 
 const Filters = () => {
 
@@ -16,7 +17,7 @@ const Filters = () => {
     }
 
   return (
-    <div>
+    <div className='filters-cont'>
         <div>
             <span>Types</span>
             <select onChange={filterByType} name="types">
