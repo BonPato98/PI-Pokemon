@@ -45,7 +45,7 @@ const Filters = () => {
             </select>
         </div>
         <div>
-            <button onClick={reset}>RESET</button>
+            <button onClick={reset}>Reset</button>
         </div>
     </div>
   )

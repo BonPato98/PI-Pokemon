@@ -1,4 +1,4 @@
-import {GET_POKEMONS, PAGINATE, FILTERBYSOURCE, FILTERBYTYPE, ORDER, RESET, SEARCH} from '../Actions/index.js'
+import {GET_POKEMONS, PAGINATE, FILTERBYSOURCE, FILTERBYTYPE, ORDER, RESET, SEARCH, GET_DETAILS, SET_ID} from '../Actions/index.js'
 
 let initialState = {
     ogPokemons: [],
@@ -6,6 +6,8 @@ let initialState = {
     paginated: [],
     unfiltered: [],
     currentPage: 0,
+    details: {},
+    detailsId: null,
     filters: false,
     ordered: false,
     search: false,
@@ -28,11 +30,22 @@ function rootReducer(state = initialState, action) {
                         paginated: [...state.ogPokemons].splice(0, 12),
                     }
                 } else {
+                    console.log(action.payload);
                     return {...state,
                         paginated: [action.payload],
                         search: true
                     }
                 }
+        case SET_ID:
+            return {
+                ...state,
+                detailsId: action.payload
+            }
+        case GET_DETAILS:
+            return {
+                ...state,
+                details: action.payload
+            }
         case PAGINATE:
             const nextPage = state.currentPage + 1;
             const prevPage = state.currentPage - 1;

@@ -13,9 +13,9 @@ const Form = () => {
     hp:"",
     attack:"",
     defense:"",
-    speed:"", // opcional
-    height:"", // opcional
-    weight:"", // opcional
+    speed: null, // opcional
+    height: null, // opcional
+    weight: null, // opcional
     types:[],
   })
 
@@ -102,7 +102,6 @@ const Form = () => {
       if(input.weight=="") setErrors({...errors, weight:""})
     }
     if(name === "types"){
-      console.log(input.types.length);
 
       if (input.types.length === 0) setErrors({...errors, types:"El pokemon debe tener al menos un tipo"})
 

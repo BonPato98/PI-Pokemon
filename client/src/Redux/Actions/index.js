@@ -7,6 +7,8 @@ export const FILTERBYSOURCE = "FILTERBYSOURCE"
 export const RESET = "RESET"
 export const ORDER = "ORDER"
 export const SEARCH = "SEARCH"
+export const GET_DETAILS = "GET_DETAILS"
+export const SET_ID = "SET_ID"
 
 export function getPokemons() {
     return async function (dispatch) {
@@ -17,8 +19,43 @@ export function getPokemons() {
                 payload: response.data
             })
         } catch (error) {
-            alert(error.response.data.error)
+            alert(error.response.data.response)
         }
+    }
+}
+
+export function getPokemonDetails(id) {
+    return async function (dispatch) {
+        try {
+            const response = await axios.get(`http://localhost:3001/pokemons/${id}`)
+            if (isNaN(response.data.id)){
+                const types = []
+                await response.data.types.forEach(type => {
+                    types.push(type.name)
+                })
+                const modifiedTypes = {...response.data, types:types}
+                return dispatch({
+                    type: GET_DETAILS,
+                    payload: modifiedTypes
+                })
+            } else {
+            return dispatch({
+                type: GET_DETAILS,
+                payload: response.data
+            })
+            }
+        } catch (error) {
+            alert(error.response.data.response)
+        }
+    }
+}
+
+export function setId(id) {
+    return async function (dispatch) {
+        return dispatch({
+            type: SET_ID,
+            payload:id
+        })
     }
 }
 
@@ -28,7 +65,7 @@ export function postPokemon(input) {
             const response = await axios.post("http://localhost:3001/pokemons", input)
             alert("Pokemon creado con éxito!")
         } catch (error) {
-            alert(error.response.data.error)
+            alert(error.response.data.response)
         }
     }
 }
@@ -81,11 +118,23 @@ export function getPokemonByName(name) {
     return async function (dispatch){
         try {
             const response = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
-            console.log(response.data);
-            return dispatch({
-                type: SEARCH,
-                payload: response.data
-            })
+            if (isNaN(response.data.id)){
+                const types = []
+                await response.data.types.forEach(type => {
+                    types.push(type.name)
+                })
+                const modifiedTypes = {...response.data, types:types}
+                return dispatch({
+                    type: SEARCH,
+                    payload: modifiedTypes
+                })
+            } else {
+                return dispatch({
+                    type: SEARCH,
+                    payload: response.data
+                })
+            }
+            
         } catch (error) {
             alert(error.response.data)
             return dispatch({

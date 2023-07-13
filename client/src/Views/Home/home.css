@@ -15,7 +15,7 @@
     justify-content: center;
 }
 
-.page-button {
+button {
         color: white;
         width: 6rem;
         height: 3rem;
@@ -29,7 +29,7 @@
         margin: 1rem;
 }
 
-.page-button:hover {
+button:hover {
     background: white;
     color: #C12026;
 }

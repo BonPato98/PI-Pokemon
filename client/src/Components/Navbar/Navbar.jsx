@@ -19,7 +19,7 @@ const Navbar = () => {
         </Link>
         <Link to='/form' className="link-style">
           <div className='navbar-form-button'>
-          <h2>Formulario</h2>
+          <h2>Create Pokemon</h2>
           </div>
         </Link>
       </div>

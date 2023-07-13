@@ -97,8 +97,19 @@ const getPokemonIdHandler = async (req, res) => {
 } 
 
 const postPokemonHandler = async (req, res) => {
-    const {name, image, hp, attack, defense, speed, height, weight, types} = req.body
+    console.log("body", req.body);
+    const {name, image, hp, attack, defense, types} = req.body
+    let {speed, height, weight} = req.body
     const nameLowerCase = name.toLowerCase()
+    if (speed === "") {
+        speed = null
+    }
+    if (height === "") {
+        height = null
+    }
+    if (weight === "") {
+        weight = null
+    }
     try {
         const response = await createPokemonDb(nameLowerCase, image, hp, attack, defense, speed, height, weight, types)
         res.status(201).json(response)
