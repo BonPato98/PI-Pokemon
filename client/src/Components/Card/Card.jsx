@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 
 const Card = (props) => {
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const pokeName = props.name
   const firstLetter = pokeName[0]
@@ -20,12 +20,13 @@ const Card = (props) => {
   typesCapitalized.push(capitalizedType)
   })
 
-  const handleId = () => {
-    dispatch(setId(props.id))
-  }
+  // const handleId = () => {
+  //   dispatch(setId(props.id))
+  // }
+// onClick={handleId}
 
   return (
-    <Link to={`/detail/${props.id}`} onClick={handleId} className="card-link">
+    <Link to={`/detail/${props.id}`} className="card-link"> 
     <div className='card-cont'>
       <div className='img-cont'>
         <img src={props.image} alt="imagen del pokemon" id='pokepic'/>

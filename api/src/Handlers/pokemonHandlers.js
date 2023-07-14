@@ -66,7 +66,7 @@ const getPokemonsHandler = async (req, res) => {
 const getPokemonIdHandler = async (req, res) => {
     const {id} = req.params
         // -----> caso API
-        if (id <= 60) {
+        if (id <= 151) {
             try {
                 const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
                 const pokemon = response.data

@@ -1,13 +1,12 @@
-import {GET_POKEMONS, PAGINATE, FILTERBYSOURCE, FILTERBYTYPE, ORDER, RESET, SEARCH, GET_DETAILS, SET_ID} from '../Actions/index.js'
+import {GET_POKEMONS, PAGINATE, FILTERBYSOURCE, FILTERBYTYPE, ORDERBYNAME, ORDERBYATTACK, RESET, SEARCH, GET_DETAILS} from '../Actions/index.js'
 
 let initialState = {
     ogPokemons: [],
+    pokemons: [],
     modifiedPokemons: [],
     paginated: [],
-    unfiltered: [],
     currentPage: 0,
     details: {},
-    detailsId: null,
     filters: false,
     ordered: false,
     search: false,
@@ -19,8 +18,8 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 ogPokemons: action.payload,
+                pokemons: [...action.payload],
                 modifiedPokemons: [...action.payload],
-                unfiltered: [...action.payload],
                 paginated: [...action.payload].splice(0, 12)
             }
         case SEARCH:
@@ -36,11 +35,6 @@ function rootReducer(state = initialState, action) {
                         search: true
                     }
                 }
-        case SET_ID:
-            return {
-                ...state,
-                detailsId: action.payload
-            }
         case GET_DETAILS:
             return {
                 ...state,
@@ -60,24 +54,117 @@ function rootReducer(state = initialState, action) {
                 currentPage: action.payload === "next" ? nextPage : prevPage
             }
         case FILTERBYTYPE:
-            const unfiltered = [...state.unfiltered]
             if (action.payload === "off") {
                 return {
                     ...state,
-                    modifiedPokemons: [...unfiltered],
-                    paginated: [...unfiltered].splice(0, 12),
+                    modifiedPokemons: [...state.ogPokemons],
+                    paginated: [...state.ogPokemons].splice(0, 12),
                     filters: false
                 }
             } else {
-                let filteredPokemon = unfiltered.filter(p => p.types.includes(action.payload))
+                // mi filtro va a usar el estado "pokemons" que son todos los pokemons para posteriormente filtrarlos
+                let filteredPokemon = [...state.pokemons].filter(p => p.types.includes(action.payload))
                 return {
                     ...state,
-                    modifiedPokemons: filteredPokemon,
-                    paginated: filteredPokemon.splice(0, 12),
+                    modifiedPokemons: [...filteredPokemon],
+                    paginated: [...filteredPokemon].splice(0, 12),
                     filters: true,
                 }
             }
-        case ORDER:
+        case ORDERBYNAME:
+            if (action.payload === "off") {
+                return {
+                    ...state,
+                    modifiedPokemons: [...state.ogPokemons],
+                    paginated: [...state.ogPokemons].splice(0, 12),
+                    ordered: false
+                }
+            } else if (action.payload === "asc") {
+                //ordeno el estado "pokemons" con todos los pokemons que va a usar mi filtro, de forma ascendente
+                let asc = [...state.pokemons].sort((prev, next) => {
+                    if (prev.name > next.name) return 1
+                    if (prev.name < next.name) return -1
+                    return 0
+                })
+                 //ordeno el estado modifiedPokemons (es el estado que se va a renderizar) de forma ascendente
+                let modifiedAsc = [...state.modifiedPokemons].sort((prev, next) => {
+                    if (prev.name > next.name) return 1
+                    if (prev.name < next.name) return -1
+                    return 0
+                })
+                return {
+                    ...state,
+                    pokemons: [...asc],
+                    modifiedPokemons: [...modifiedAsc],
+                    paginated: [...modifiedAsc].splice(0, 12),
+                    ordered: true
+                }
+            } else {
+                //ordeno el estado "pokemons" con todos los pokemons que va a usar mi filtro, de forma descendente
+                let desc = [...state.pokemons].sort((prev, next) => {
+                    if (prev.name > next.name) return -1
+                    if (prev.name < next.name) return 1
+                    return 0
+                })
+                 //ordeno el estado modifiedPokemons (es el estado que se va a renderizar) de forma descendente
+                let modifiedDesc = [...state.modifiedPokemons].sort((prev, next) => {
+                    if (prev.name > next.name) return -1
+                    if (prev.name < next.name) return 1
+                    return 0
+                })
+                return {
+                    ...state,
+                    pokemons: [...desc],
+                    modifiedPokemons: [...modifiedDesc],
+                    paginated: [...modifiedDesc].splice(0, 12),
+                    ordered: true
+                }
+            }
+        case ORDERBYATTACK:
+            if (action.payload === "off") {
+                return {
+                    ...state,
+                    modifiedPokemons: [...state.ogPokemons],
+                    paginated: [...state.ogPokemons].splice(0, 12),
+                    ordered: false
+                }
+            } else if (action.payload === "asc") {
+                let asc = [...state.pokemons].sort((prev, next) => {
+                    if (prev.attack > next.attack) return 1
+                    if (prev.attack < next.attack) return -1
+                    return 0
+                })
+                let modifiedAsc = [...state.modifiedPokemons].sort((prev, next) => {
+                    if (prev.attack > next.attack) return 1
+                    if (prev.attack < next.attack) return -1
+                    return 0
+                })
+                return {
+                    ...state,
+                    pokemons: [...asc],
+                    modifiedPokemons: [...modifiedAsc],
+                    paginated: [...modifiedAsc].splice(0, 12),
+                    ordered: true
+                }
+            } else {
+                let desc = [...state.pokemons].sort((prev, next) => {
+                    if (prev.attack > next.attack) return -1
+                    if (prev.attack < next.attack) return 1
+                    return 0
+                })
+                let modifiedDesc = [...state.modifiedPokemons].sort((prev, next) => {
+                    if (prev.attack > next.attack) return -1
+                    if (prev.attack < next.attack) return 1
+                    return 0
+                })
+                return {
+                    ...state,
+                    pokemons: [...desc],
+                    modifiedPokemons: [...modifiedDesc],
+                    paginated: [...modifiedDesc].splice(0, 12),
+                    ordered: true
+                }
+            }
         case RESET:
             if (state.filters || state.ordered || state.search){
                 return {
@@ -95,5 +182,11 @@ function rootReducer(state = initialState, action) {
             return state
     }
 }
+
+  // case SET_ID:
+        //     return {
+        //         ...state,
+        //         detailsId: action.payload
+        //     }
 
 export default rootReducer;

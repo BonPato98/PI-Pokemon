@@ -5,10 +5,10 @@ export const PAGINATE = "PAGINATE"
 export const FILTERBYTYPE = "FILTERBYTYPE"
 export const FILTERBYSOURCE = "FILTERBYSOURCE"
 export const RESET = "RESET"
-export const ORDER = "ORDER"
+export const ORDERBYNAME = "ORDERBYNAME"
+export const ORDERBYATTACK = "ORDERBYATTACK"
 export const SEARCH = "SEARCH"
 export const GET_DETAILS = "GET_DETAILS"
-export const SET_ID = "SET_ID"
 
 export function getPokemons() {
     return async function (dispatch) {
@@ -28,7 +28,7 @@ export function getPokemonDetails(id) {
     return async function (dispatch) {
         try {
             const response = await axios.get(`http://localhost:3001/pokemons/${id}`)
-            if (isNaN(response.data.id)){
+            if (isNaN(response.data.id) && !undefined){
                 const types = []
                 await response.data.types.forEach(type => {
                     types.push(type.name)
@@ -47,15 +47,6 @@ export function getPokemonDetails(id) {
         } catch (error) {
             alert(error.response.data.response)
         }
-    }
-}
-
-export function setId(id) {
-    return async function (dispatch) {
-        return dispatch({
-            type: SET_ID,
-            payload:id
-        })
     }
 }
 
@@ -79,10 +70,19 @@ export function paginatePokemon(order){
     }
 }
 
-export function orderPokemon(order){
+export function orderPokemonByName(order){
     return async function (dispatch){
         dispatch({
-            type:ORDER,
+            type:ORDERBYNAME,
+            payload:order
+        })
+    }
+}
+
+export function orderPokemonByAttack(order){
+    return async function (dispatch){
+        dispatch({
+            type:ORDERBYATTACK,
             payload:order
         })
     }
@@ -144,3 +144,15 @@ export function getPokemonByName(name) {
         }
     }
 }
+
+
+// export const SET_ID = "SET_ID"
+
+// export function setId(id) {
+//     return async function (dispatch) {
+//         return dispatch({
+//             type: SET_ID,
+//             payload:id
+//         })
+//     }
+// }

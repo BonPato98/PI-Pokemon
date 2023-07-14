@@ -2,19 +2,26 @@ import React, { useEffect } from 'react'
 import './detail.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPokemonDetails } from '../../Redux/Actions'
+import { useParams } from 'react-router-dom'
 
 const Detail = () => {
   
   const dispatch = useDispatch()
+
   const pokemonDetails = useSelector((state => state.details))
-  const pokemonId = useSelector((state => state.detailsId))
+  let {id} = useParams()
+  
 
 
   useEffect(() => {
-    dispatch(getPokemonDetails(pokemonId))
+    dispatch(getPokemonDetails(id))
   },[dispatch])
 
-
+  if (pokemonDetails.id === undefined) return (
+    <div>
+      Pokemon no existe
+    </div>
+  )
     return (
     <div>
       <div>
