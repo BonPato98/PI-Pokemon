@@ -159,58 +159,59 @@ const Form = () => {
   }
 
   return (
+    <div className='form-main-cont'>
     <div className='form-cont'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form'>
         <div className='form-input-cont'>
-          <label>Nombre:</label>
+          <div className='form-input-title-cont'><label>Nombre:</label></div>
           <input name="name" onChange={handleChange} type="text" />
-          <span>{errors.name}</span>
+          <span className='form-warning'>{errors.name}</span>
         </div>
 
         <div className='form-input-cont'>
-          <label>Imagen:</label>
+        <div className='form-input-title-cont'><label>Imagen:</label></div>
           <input name="image" onChange={handleChange} type="text" />
-          <span>{errors.image}</span>
+          <span className='form-warning'>{errors.image}</span>
         </div>
 
         <div className='form-input-cont'>
-          <label>Vida:</label>
+        <div className='form-input-title-cont'><label>Vida:</label></div>
           <input name="hp" onChange={handleChange} type="text" />
-          <span>{errors.hp}</span>
+          <span className='form-warning'>{errors.hp}</span>
         </div>
 
         <div className='form-input-cont'>
-          <label>Ataque:</label>
+        <div className='form-input-title-cont'><label>Ataque:</label></div>
           <input name="attack" onChange={handleChange} type="text" />
-          <span>{errors.attack}</span>
+          <span className='form-warning'>{errors.attack}</span>
         </div>
 
         <div className='form-input-cont'>
-          <label>Defensa:</label>
+        <div className='form-input-title-cont'><label>Defensa:</label></div>
           <input name="defense" onChange={handleChange} type="text" />
-          <span>{errors.defense}</span>
+          <span className='form-warning'>{errors.defense}</span>
           </div>
 
         <div className='form-input-cont'> 
-          <label>Velocidad:</label>
+        <div className='form-input-title-cont'><label>Velocidad:</label></div>
           <input name="speed" onChange={handleChange} type="text" />
-          <span>{errors.speed}</span>
+          <span className='form-warning'>{errors.speed}</span>
         </div>
 
         <div className='form-input-cont'>
-          <label>Altura:</label>
+        <div className='form-input-title-cont'><label>Altura:</label></div>
           <input name="height" onChange={handleChange} type="text" />
-          <span>{errors.height}</span>
+          <span className='form-warning'>{errors.height}</span>
         </div>
 
         <div className='form-input-cont'>
-          <label>Peso:</label>
+        <div className='form-input-title-cont'><label>Peso:</label></div>
           <input name="weight" onChange={handleChange} type="text" />
-          <span>{errors.weight}</span>
         </div>
+        <div><span className='form-warning'>{errors.weight}</span></div>
 
         <div className='form-input-cont'>
-          <label>Tipos:</label>
+        <div className='form-input-title-cont'><label>Tipos:</label></div>
           <select multiple={true} name="types" onChange={handleSelect}>
             <option value="normal">Normal</option>
             <option value="fighting">Fighting</option>
@@ -233,13 +234,14 @@ const Form = () => {
             <option value="unknown">Unknown</option>
             <option value="shadow">Shadow</option>
           </select>
-          <span>{errors.types}</span>
+          <span className='form-warning'>{errors.types}</span>
         </div>
 
         <div className='form-button'>
           <input disabled={disable()} type="submit"/>
           </div>
       </form>
+    </div>
     </div>
   )
 }

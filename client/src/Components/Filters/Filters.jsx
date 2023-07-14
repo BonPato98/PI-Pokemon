@@ -25,51 +25,51 @@ const Filters = () => {
     }
 
   return (
-    <div className='filters-cont'>
-        <div>
-            <span>Types</span>
+    <div className='options-cont'>
+        <div className='filter-cont'>
+            <span>Filtrar por tipo: </span>
             <select onChange={filterByType} name="types">
-                <option defaultChecked>off</option>
+                <option defaultChecked>Ninguno</option>
                 <option value="normal">Normal</option>
-                <option value="fighting">Fighting</option>
-                <option value="flying">Flying</option>
-                <option value="poison">Poison</option>
-                <option value="ground">Ground</option>
-                <option value="rock">Rock</option>
-                <option value="bug">Bug</option>
-                <option value="ghost">Ghost</option>
-                <option value="steel">Steel</option>
-                <option value="fire">Fire</option>
-                <option value="water">Water</option>
-                <option value="grass">Grass</option>
-                <option value="electric">Electric</option>
-                <option value="psychic">Psychic</option>
-                <option value="ice">Ice</option>
-                <option value="dragon">Dragon</option>
-                <option value="dark">Dark</option>
-                <option value="fairy">Fairy</option>
-                <option value="unknown">Unknown</option>
-                <option value="shadow">Shadow</option>
+                <option value="fighting">Lucha</option>
+                <option value="flying">Volador</option>
+                <option value="poison">Veneno</option>
+                <option value="ground">Tierra</option>
+                <option value="rock">Roca</option>
+                <option value="bug">Bicho</option>
+                <option value="ghost">Fantasma</option>
+                <option value="steel">Acero</option>
+                <option value="fire">Fuego</option>
+                <option value="water">Agua</option>
+                <option value="grass">Planta</option>
+                <option value="electric">Eléctrico</option>
+                <option value="psychic">Psíquico</option>
+                <option value="ice">Hielo</option>
+                <option value="dragon">Dragón</option>
+                <option value="dark">Siniestro</option>
+                <option value="fairy">Hada</option>
+                <option value="unknown">???</option>
+                <option value="shadow">Sombra</option>
             </select>
         </div>
-        <div>
-            <span>Order By Name</span>
+        <div className='name-order-cont'>
+            <span>Ordenar por nombre: </span>
             <select name="orderByName" onChange={orderByName}>
-                <option defaultChecked>off</option>
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
+                <option defaultChecked>Ninguno</option>
+                <option value="asc">Ascendente</option>
+                <option value="desc">Descendente</option>
             </select>
         </div>
-        <div>
-            <span>Order By Attack</span>
+        <div className='attack-order-cont'>
+            <span>Ordenar por ataque: </span>
             <select name="orderByAttack" onChange={orderByAttack}>
-                <option defaultChecked>off</option>
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
+                <option defaultChecked>Ninguno</option>
+                <option value="asc">Ascendente</option>
+                <option value="desc">Descendente</option>
             </select>
         </div>
-        <div>
-            <button onClick={reset}>Reset</button>
+        <div className='reset-button-cont'>
+            <button onClick={reset}>Restablecer</button>
         </div>
     </div>
   )

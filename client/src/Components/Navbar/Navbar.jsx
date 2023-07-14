@@ -14,12 +14,12 @@ const Navbar = () => {
       <div className='link-cont'>
         <Link to='/home' className="link-style">
           <div className='navbar-home-button'>
-            <h2>Home</h2>
+            <h2>Inicio</h2>
           </div>
         </Link>
         <Link to='/form' className="link-style">
           <div className='navbar-form-button'>
-          <h2>Create Pokemon</h2>
+          <h2>Crear Pokemon</h2>
           </div>
         </Link>
       </div>

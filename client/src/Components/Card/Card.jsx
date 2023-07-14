@@ -1,8 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './card.css'
-import { setId } from '../../Redux/Actions'
-import { useDispatch } from 'react-redux'
+// import { setId } from '../../Redux/Actions'
+// import { useDispatch } from 'react-redux'
 
 const Card = (props) => {
 
@@ -33,7 +33,7 @@ const Card = (props) => {
       </div>
       <div className='info-cont'>
         <h4>{capitalized}</h4>
-        <p>Types: {typesCapitalized.join(", ")}</p>
+        <p>Tipos: {typesCapitalized.join(", ")}</p>
       </div>
     </div>
     </Link>

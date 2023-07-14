@@ -36,7 +36,7 @@ const Home = () => {
       <div>
         <Cards pokemon={paginated}></Cards>
         <div className='page-buttons-cont'>
-        <button className="page-button" onClick={prevPage}>Prev</button><button className="page-button" onClick={nextPage}>Next</button>
+        <button className="page-button" onClick={prevPage}>Anterior</button><button className="page-button" onClick={nextPage}>Siguiente</button>
       </div>
       </div>
     </div>
