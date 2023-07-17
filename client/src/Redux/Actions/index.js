@@ -136,6 +136,9 @@ export function getPokemonByName(name) {
             }
             
         } catch (error) {
+            if (!name) {
+                return
+            }
             alert(error.response.data)
             return dispatch({
                 type: SEARCH,
@@ -144,15 +147,3 @@ export function getPokemonByName(name) {
         }
     }
 }
-
-
-// export const SET_ID = "SET_ID"
-
-// export function setId(id) {
-//     return async function (dispatch) {
-//         return dispatch({
-//             type: SET_ID,
-//             payload:id
-//         })
-//     }
-// }
