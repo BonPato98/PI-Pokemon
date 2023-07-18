@@ -10,10 +10,12 @@ const Detail = () => {
 
   const pokemonDetails = useSelector((state => state.details))
   let {id} = useParams()
-
+  
   useEffect(() => {
     dispatch(getPokemonDetails(id))
   },[dispatch])
+
+  
 
   if (pokemonDetails.id === undefined) return (
     <div>
@@ -56,7 +58,7 @@ const Detail = () => {
         </div>
         
         <div className='detail-text-cont'>
-          <span className='text-style'>Tipos: </span>{pokemonDetails.types}
+          <span className='text-style'>Tipos: </span>{pokemonDetails.types ? pokemonDetails.types.join(", ") : null}
         </div>
 
       </div>

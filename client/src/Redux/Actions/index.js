@@ -26,6 +26,28 @@ export function getPokemons() {
 
 export function getPokemonDetails(id) {
     return async function (dispatch) {
+        const translated = {
+            "normal": "Normal",
+            "fighting": "Lucha",
+            "flying": "Volador",
+            "poison": "Veneno",
+            "ground": "Tierra",
+            "rock": "Roca",
+            "bug": "Bicho",
+            "ghost": "Fantasma",
+            "steel": "Acero",
+            "fire": "Fuego",
+            "water": "Agua",
+            "grass": "Planta",
+            "electric": "Eléctrico",
+            "psychic": "Psíquico",
+            "ice": "Hielo",
+            "dragon": "Dragón",
+            "dark": "Siniestro",
+            "fairy": "Hada",
+            "unknown": "???",
+            "shadow": "Sombra",
+          }
         try {
             const response = await axios.get(`http://localhost:3001/pokemons/${id}`)
             if (isNaN(response.data.id) && !undefined){
@@ -33,15 +55,27 @@ export function getPokemonDetails(id) {
                 await response.data.types.forEach(type => {
                     types.push(type.name)
                 })
-                const modifiedTypes = {...response.data, types:types}
+                const modifiedTypes = [...types]
+                const typesTranslated = []
+                modifiedTypes.map(t => {
+                    typesTranslated.push( translated[t])
+                })
                 return dispatch({
                     type: GET_DETAILS,
-                    payload: modifiedTypes
+                    payload: {...response.data, types:typesTranslated}
                 })
             } else {
+                const types = []
+                await response.data.types.forEach(type => {
+                    types.push(type)
+                })
+                const typesTranslated = []
+                types.map(t => {
+                    typesTranslated.push( translated[t])
+                })
             return dispatch({
                 type: GET_DETAILS,
-                payload: response.data
+                payload: {...response.data, types:typesTranslated}
             })
             }
         } catch (error) {

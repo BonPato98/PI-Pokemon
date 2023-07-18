@@ -213,26 +213,26 @@ const Form = () => {
         <div className='form-input-cont'>
         <div className='form-input-title-cont'><label>Tipos:</label></div>
           <select multiple={true} name="types" onChange={handleSelect}>
-            <option value="normal">Normal</option>
-            <option value="fighting">Fighting</option>
-            <option value="flying">Flying</option>
-            <option value="poison">Poison</option>
-            <option value="ground">Ground</option>
-            <option value="rock">Rock</option>
-            <option value="bug">Bug</option>
-            <option value="ghost">Ghost</option>
-            <option value="steel">Steel</option>
-            <option value="fire">Fire</option>
-            <option value="water">Water</option>
-            <option value="grass">Grass</option>
-            <option value="electric">Electric</option>
-            <option value="psychic">Psychic</option>
-            <option value="ice">Ice</option>
-            <option value="dragon">Dragon</option>
-            <option value="dark">Dark</option>
-            <option value="fairy">Fairy</option>
-            <option value="unknown">Unknown</option>
-            <option value="shadow">Shadow</option>
+                <option value="normal">Normal</option>
+                <option value="fighting">Lucha</option>
+                <option value="flying">Volador</option>
+                <option value="poison">Veneno</option>
+                <option value="ground">Tierra</option>
+                <option value="rock">Roca</option>
+                <option value="bug">Bicho</option>
+                <option value="ghost">Fantasma</option>
+                <option value="steel">Acero</option>
+                <option value="fire">Fuego</option>
+                <option value="water">Agua</option>
+                <option value="grass">Planta</option>
+                <option value="electric">Eléctrico</option>
+                <option value="psychic">Psíquico</option>
+                <option value="ice">Hielo</option>
+                <option value="dragon">Dragón</option>
+                <option value="dark">Siniestro</option>
+                <option value="fairy">Hada</option>
+                <option value="unknown">???</option>
+                <option value="shadow">Sombra</option>
           </select>
           <span className='form-warning'>{errors.types}</span>
         </div>

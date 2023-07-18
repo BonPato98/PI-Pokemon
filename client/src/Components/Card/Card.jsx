@@ -1,12 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './card.css'
-// import { setId } from '../../Redux/Actions'
-// import { useDispatch } from 'react-redux'
 
 const Card = (props) => {
-
-  // const dispatch = useDispatch()
 
   const pokeName = props.name
   const firstLetter = pokeName[0]
@@ -20,11 +16,34 @@ const Card = (props) => {
   typesCapitalized.push(capitalizedType)
   })
 
-  // const handleId = () => {
-  //   dispatch(setId(props.id))
-  // }
-// onClick={handleId}
+  const translated = {
+    "Normal": "Normal",
+    "Fighting": "Lucha",
+    "Flying": "Volador",
+    "Poison": "Veneno",
+    "Ground": "Tierra",
+    "Rock": "Roca",
+    "Bug": "Bicho",
+    "Ghost": "Fantasma",
+    "Steel": "Acero",
+    "Fire": "Fuego",
+    "Water": "Agua",
+    "Grass": "Planta",
+    "Electric": "Eléctrico",
+    "Psychic": "Psíquico",
+    "Ice": "Hielo",
+    "Dragon": "Dragón",
+    "Dark": "Siniestro",
+    "Fairy": "Hada",
+    "Unknown": "???",
+    "Shadow": "Sombra",
+  }
 
+  const typesTranslated = []
+  typesCapitalized.map(t => {
+    typesTranslated.push( translated[t])
+  })
+  
   return (
     <Link to={`/detail/${props.id}`} className="card-link"> 
     <div className='card-cont'>
@@ -33,7 +52,7 @@ const Card = (props) => {
       </div>
       <div className='info-cont'>
         <h4>{capitalized}</h4>
-        <p>Tipos: {typesCapitalized.join(", ")}</p>
+        <p>Tipos: {typesTranslated.join(", ")}</p>
       </div>
     </div>
     </Link>

@@ -3,6 +3,7 @@ import './cards.css'
 import Card from '../Card/Card'
 
 const Cards = ({pokemon}) => {
+ 
   return (
     <div className='main-cards-cont'>
       <div className='cards-cont'>
