@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import './landing.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { getPokemons } from '../../Redux/Actions'
+import { useDispatch } from 'react-redux'
+import { getPokemons, getTypes } from '../../Redux/Actions'
 
 const Landing = () => {
   
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getTypes())
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(getPokemons())

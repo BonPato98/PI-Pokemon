@@ -9,6 +9,7 @@ export const ORDERBYNAME = "ORDERBYNAME"
 export const ORDERBYATTACK = "ORDERBYATTACK"
 export const SEARCH = "SEARCH"
 export const GET_DETAILS = "GET_DETAILS"
+export const GET_TYPES = "GET_TYPES"
 
 export function getPokemons() {
     return async function (dispatch) {
@@ -23,6 +24,21 @@ export function getPokemons() {
         }
     }
 }
+
+export function getTypes() {
+    return async function (dispatch) {
+        try {
+            const response = await axios.get("http://localhost:3001/types")
+            return dispatch({
+                type: GET_TYPES,
+                payload: response
+            })
+        } catch (error) {
+            alert(error.response.data.response)
+        }
+    }
+}
+
 
 export function getPokemonDetails(id) {
     return async function (dispatch) {
