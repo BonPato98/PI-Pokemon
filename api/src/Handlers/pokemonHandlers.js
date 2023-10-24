@@ -97,7 +97,6 @@ const getPokemonIdHandler = async (req, res) => {
 } 
 
 const postPokemonHandler = async (req, res) => {
-    console.log("body", req.body);
     const {name, image, hp, attack, defense, types} = req.body
     let {speed, height, weight} = req.body
     const nameLowerCase = name.toLowerCase()
