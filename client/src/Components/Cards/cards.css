@@ -1,10 +1,7 @@
 .cards-cont{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.main-cards-cont{
-    display: flex;
-    flex-flow: column wrap;
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(25%, 1fr)); /* ajusta las cards al width de la imagen */
+    grid-template-columns: repeat(4, 1fr);  /* grid estatico de 4 columnas */
+    gap: 5px;
+    margin: 1rem;
 }

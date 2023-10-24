@@ -47,13 +47,18 @@ const Card = (props) => {
   return (
     <Link to={`/detail/${props.id}`} className="card-link"> 
     <div className='card-cont'>
-      <div className='img-cont'>
-        <img src={props.image} alt="imagen del pokemon" id='pokepic'/>
+      <div className='img-cont' 
+      // style={{backgroundImage: `url(${props.image})`, backgroundSize: 'fit',
+      //   backgroundRepeat: 'no-repeat',
+      //   backgroundPosition: 'center',
+      //   height: '500px',}}
+        >
+        <img src={props.image} alt="imagen del pokemon"/>
       </div>
-      <div className='info-cont'>
+      {/* <div className='info-cont'>
         <h4>{capitalized}</h4>
         <p>Tipos: {typesTranslated.join(", ")}</p>
-      </div>
+      </div> */}
     </div>
     </Link>
   )

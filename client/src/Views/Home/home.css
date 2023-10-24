@@ -1,15 +1,9 @@
-.main-home-cont{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin: 3%;
-}
 
 .functions-cont{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 1rem;
 }
 
 .page-buttons-cont{
