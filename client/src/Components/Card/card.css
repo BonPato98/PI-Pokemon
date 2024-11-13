@@ -1,23 +1,47 @@
+
+
+/*estilo y color de texto editado, para modificar el comportamiento normal de texto de hiperviculo*/
+.card-link {
+    color: white;
+    text-shadow: 2px 1px 2px black;
+    font-style: none;
+    text-decoration: none;
+}
+
+/*estilo de la carta*/
 .card-cont{
-    border: 1px solid rgb(187, 187, 187);
-}
+    /* border: 1px solid rgb(187, 187, 187); */
+    height: 50vh;
+    max-height: 200px;
 
-.img-cont{
+    /*propiedades del fondo e imagen del pokemon*/
+    background: #8DB9DC center no-repeat;
+    background-size: 100%;
+
+    /*animacion al quitar el mouse*/
+    transition: all 0.7s;
+    transition: ease-in-out 0.7s;
+
+    /*propiedades del contenido*/
     display: flex;
+    align-items: end;
     justify-content: center;
-    background-color: #8DB9DC;
-    transition: all 0.8s;
 }
 
-.img-cont img {
+
+/*propiedades de la carta al poner el mouse encima*/
+.card-cont:hover {
+    background-size: 110%;
+    transition: all 0.7s;
+    transition: ease-in-out 0.7s;
+}
+
+.info-cont {
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0) 0%, rgb(52, 75, 94) 100%);
     width: 100%;
-    transition: all 0.8s;
-}
-
-.img-cont:hover {
-    background-color: red;
-}
-
-.img-cont img:hover {
-    width: 105%;
+    height: 50%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: end;
+    align-items: center;
 }

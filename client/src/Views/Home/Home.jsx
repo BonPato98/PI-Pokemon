@@ -41,7 +41,7 @@ const Home = () => {
           Esto puede tardar unos minutos...
         </div> 
       : 
-        <div>
+        <div className='pokemons-cont'>
           <Cards pokemon={paginated}></Cards>
           <div className='page-buttons-cont'>
             <button className="page-button" onClick={prevPage}>
