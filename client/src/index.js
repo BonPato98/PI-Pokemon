@@ -5,6 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import {store} from './Redux/Store'
+import axios from 'axios';
+
+// sitio host de servidor backend
+axios.defaults.baseURL = 'https://pokemon-project-backend.onrender.com'
 
 ReactDOM.render(
   // <React.StrictMode>

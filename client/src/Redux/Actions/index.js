@@ -14,7 +14,7 @@ export const GET_TYPES = "GET_TYPES"
 export function getPokemons() {
     return async function (dispatch) {
         try {
-            const response = await axios.get("http://localhost:3001/pokemons")
+            const response = await axios.get("/pokemons")
             return dispatch({
                 type: GET_POKEMONS,
                 payload: response.data
@@ -28,7 +28,7 @@ export function getPokemons() {
 export function getTypes() {
     return async function (dispatch) {
         try {
-            const response = await axios.get("http://localhost:3001/types")
+            const response = await axios.get("/types")
             return dispatch({
                 type: GET_TYPES,
                 payload: response
@@ -65,7 +65,7 @@ export function getPokemonDetails(id) {
             "shadow": "Sombra",
           }
         try {
-            const response = await axios.get(`http://localhost:3001/pokemons/${id}`)
+            const response = await axios.get(`/pokemons/${id}`)
             if (isNaN(response.data.id) && !undefined){
                 const types = []
                 await response.data.types.forEach(type => {
@@ -103,7 +103,7 @@ export function getPokemonDetails(id) {
 export function postPokemon(input) {
     return async function (dispatch) {
         try {
-            const response = await axios.post("http://localhost:3001/pokemons", input)
+            const response = await axios.post("/pokemons", input)
             alert("Pokemon creado con éxito!")
         } catch (error) {
             alert(error.response.data.response)
@@ -167,7 +167,7 @@ export function resetPokemon(){
 export function getPokemonByName(name) {
     return async function (dispatch){
         try {
-            const response = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+            const response = await axios.get(`/pokemons?name=${name}`)
             if (isNaN(response.data.id)){
                 const types = []
                 await response.data.types.forEach(type => {
