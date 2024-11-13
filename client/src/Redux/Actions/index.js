@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import axios from 'axios'
 
 export const GET_POKEMONS = "GET_POKEMONS"
@@ -103,7 +104,7 @@ export function getPokemonDetails(id) {
 export function postPokemon(input) {
     return async function (dispatch) {
         try {
-            const response = await axios.post("/pokemons", input)
+            await axios.post("/pokemons", input)
             alert("Pokemon creado con éxito!")
         } catch (error) {
             alert(error.response.data.response)
