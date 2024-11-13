@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import './home.css'
 import Cards from '../../Components/Cards/Cards'
 import {useDispatch, useSelector} from "react-redux"
@@ -10,6 +10,7 @@ const Home = () => {
   
   const dispatch = useDispatch();
   const paginated = useSelector((state) => state.paginated)
+  
 
   const nextPage = () => {
     dispatch(paginatePokemon("next"))
@@ -33,12 +34,24 @@ const Home = () => {
           <Filters/>
         </div>
       </div>
-      <div>
-        <Cards pokemon={paginated}></Cards>
-        <div className='page-buttons-cont'>
-        <button className="page-button" onClick={prevPage}>Anterior</button><button className="page-button" onClick={nextPage}>Siguiente</button>
-      </div>
-      </div>
+      {paginated.length <= 0 
+      ? 
+      <div className='loading'>
+        <span className="loader"></span>
+          Esto puede tardar unos minutos...
+        </div> 
+      : 
+        <div>
+          <Cards pokemon={paginated}></Cards>
+          <div className='page-buttons-cont'>
+            <button className="page-button" onClick={prevPage}>
+              Anterior
+            </button>
+            <button className="page-button" onClick={nextPage}>
+              Siguiente
+            </button>
+          </div>
+        </div>}
     </div>
     
   )
