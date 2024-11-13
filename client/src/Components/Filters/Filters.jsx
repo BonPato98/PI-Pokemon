@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react'
 import { filterPokemonByType, resetPokemon, orderPokemonByName, orderPokemonByAttack, filterPokemonBySource } from '../../Redux/Actions'
 import { useDispatch } from 'react-redux'
@@ -15,6 +16,7 @@ const Filters = () => {
 
     const filterByType = (e) => {
         dispatch(filterPokemonByType(e.target.value))
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useSelected({
             ...selected,
             filterByType: e.target.value
